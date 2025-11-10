@@ -6,18 +6,14 @@ import { useRef, useState, useEffect } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { createPortal } from "react-dom";
+import Image from "next/image";
 
 gsap.registerPlugin(ScrollTrigger);
 
 export default function HeroSection() {
   const containerRef = useRef<HTMLDivElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
-  const [isMuted, setIsMuted] = useState(true); // Start muted for reliable autoplay
   const [isMounted, setIsMounted] = useState(false);
-  const [showUnmutePrompt, setShowUnmutePrompt] = useState(true);
-
-  // Simple video ref - let autoplay work reliably muted
-  const videoRef = useRef<HTMLVideoElement>(null);
 
   useEffect(() => {
     // Set mounted in timeout to avoid cascading renders
@@ -88,18 +84,14 @@ export default function HeroSection() {
   const videoBackground = isMounted
     ? createPortal(
         <div className="fixed inset-0 -z-10">
-          <video
-            ref={videoRef}
-            autoPlay
-            loop
-            muted
-            playsInline
-            preload="auto"
-            controls={false}
-            className="w-full h-full object-cover"
-          >
-            <source src="/hero-video2.mp4" type="video/mp4" />
-          </video>
+          <Image
+            src="/Dog-unscreen.gif"
+            alt="K9 Hero Background"
+            fill
+            className="object-cover"
+            priority
+            unoptimized
+          />
           <div className="absolute inset-0 bg-black/50" />
         </div>,
         document.body
