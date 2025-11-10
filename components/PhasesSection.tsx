@@ -1,86 +1,179 @@
 "use client";
 
+import { useRef, useEffect } from "react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import PhaseCard from "./PhaseCard";
-import AnimatedSection from "./AnimatedSection";
+
+gsap.registerPlugin(ScrollTrigger);
 
 const phases = [
   {
     phase: 1,
     title: "Site Preparation & Foundation",
-    description: "Laying the groundwork for our K-9 hero facility",
+    description:
+      "Land acquisition, site development, and infrastructure planning",
     goal: 1200000,
     raised: 850000,
     isActive: true,
     imageSrc: "/phase1.jpg",
     details:
-      "Complete site preparation, grading, utilities installation, and foundation work for the main facility building.",
+      "Secure property, complete environmental assessments, site grading, utility connections, and lay foundation for our state-of-the-art K-9 facility.",
   },
   {
     phase: 2,
     title: "Main Facility Construction",
-    description: "Building the core structure and veterinary center",
+    description: "Building the core veterinary and rehabilitation center",
     goal: 2500000,
     raised: 450000,
     isActive: true,
     imageSrc: "/phase2.jpg",
     details:
-      "Construction of the main building including veterinary clinic, training areas, and administrative offices.",
+      "Construct main building with advanced veterinary clinic, surgical suites, rehabilitation pools, kennels, and administrative offices to serve our heroes.",
+    color: "from-green-500 to-green-600",
+    bgPattern: "🏥",
   },
   {
     phase: 3,
     title: "Training & Exercise Areas",
-    description: "Specialized training grounds for our heroes",
+    description: "Outdoor agility courses and specialized training grounds",
     goal: 1800000,
     raised: 0,
     isActive: false,
     imageSrc: "/phase3.jpg",
+    details:
+      "Build professional-grade agility courses, scent detection training areas, obedience fields, and secure exercise yards for active and retired K-9s.",
+    color: "from-orange-500 to-orange-600",
+    bgPattern: "🏃",
   },
   {
     phase: 4,
-    title: "Rehabilitation Center",
-    description: "Advanced care for retired K-9s",
+    title: "Rehabilitation & Therapy Center",
+    description: "Advanced medical care and physical therapy facilities",
     goal: 1500000,
     raised: 0,
     isActive: false,
     imageSrc: "/phase4.jpg",
+    details:
+      "Install underwater treadmills, laser therapy equipment, and specialized rehabilitation tools to help injured and aging K-9 heroes recover and thrive.",
+    color: "from-purple-500 to-purple-600",
+    bgPattern: "🧘",
   },
   {
     phase: 5,
     title: "Adoption & Community Center",
-    description: "Connecting heroes with loving homes",
+    description: "Meet-and-greet spaces and adoption coordination offices",
     goal: 1000000,
     raised: 0,
     isActive: false,
     imageSrc: "/phase5.jpg",
+    details:
+      "Create welcoming spaces where retired K-9s can meet potential adopters, plus offices for adoption coordinators and community education programs.",
+    color: "from-pink-500 to-pink-600",
+    bgPattern: "❤️",
   },
   {
     phase: 6,
-    title: "Memorial Garden & Museum",
-    description: "Honoring our fallen heroes",
+    title: "Memorial Garden & Heritage Museum",
+    description: "Honoring the service and sacrifice of our K-9 heroes",
     goal: 670000,
     raised: 0,
     isActive: false,
     imageSrc: "/phase6.jpg",
+    details:
+      "Establish a peaceful memorial garden and interactive museum showcasing the history and heroism of working K-9s who served our nation.",
+    color: "from-indigo-500 to-indigo-600",
+    bgPattern: "🌿",
   },
 ];
 
 export default function PhasesSection() {
-  return (
-    <section id="phases" className="py-20 px-4 bg-gray-50">
-      <div className="max-w-7xl mx-auto">
-        <AnimatedSection>
-          <h2 className="text-5xl font-bold text-center mb-4">Our Journey</h2>
-          <p className="text-xl text-center text-gray-600 mb-12 max-w-3xl mx-auto">
-            Follow our multi-phase approach to building a world-class facility
-            for our K-9 heroes
-          </p>
-        </AnimatedSection>
+  const containerRef = useRef<HTMLDivElement>(null);
+  const timelineRef = useRef<HTMLDivElement>(null);
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+  useEffect(() => {
+    const container = containerRef.current;
+    const timeline = timelineRef.current;
+
+    if (!container || !timeline) return;
+
+    // Calculate total scroll distance needed
+    const scrollDistance = timeline.scrollWidth - window.innerWidth;
+
+    // Create horizontal scroll timeline
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: container,
+        start: "top top",
+        end: `+=${scrollDistance}`,
+        scrub: 1,
+        pin: true,
+        anticipatePin: 1,
+        pinSpacing: true,
+        invalidateOnRefresh: true,
+        onLeave: () => {
+          // Ensure smooth transition when leaving
+          gsap.set(timeline, { clearProps: "all" });
+        },
+        onEnterBack: () => {
+          // Reset position when scrolling back up
+          gsap.set(timeline, { x: 0 });
+        },
+      },
+    });
+
+    // Move timeline horizontally
+    tl.to(timeline, {
+      x: -scrollDistance,
+      ease: "none",
+    });
+
+    return () => {
+      // Clean up ScrollTrigger and reset timeline position
+      ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
+      if (timeline) {
+        gsap.set(timeline, { clearProps: "all" });
+      }
+    };
+  }, []);
+
+  return (
+    <section
+      id="phases"
+      ref={containerRef}
+      className="relative bg-linear-to-b from-white to-primary-50 overflow-hidden"
+    >
+      {/* Header - Fixed at top */}
+      <div className="relative z-10 py-12 text-center">
+        <h2 className="text-5xl font-bold mb-4 text-secondary-500">
+          Our Journey
+        </h2>
+        <p className="text-xl text-gray-700 max-w-3xl mx-auto">
+          Follow our multi-phase approach to building a world-class facility for
+          our K-9 heroes
+        </p>
+      </div>
+
+      {/* Horizontal scrolling timeline */}
+      <div className="relative py-12">
+        <div
+          ref={timelineRef}
+          className="flex gap-8 px-8"
+          style={{ width: `${phases.length * 400 + 200}px` }}
+        >
           {phases.map((phase) => (
-            <PhaseCard key={phase.phase} {...phase} />
+            <div key={phase.phase} className="shrink-0 w-96">
+              <PhaseCard {...phase} />
+            </div>
           ))}
         </div>
+      </div>
+
+      {/* Simple scroll hint */}
+      <div className="text-center pb-8">
+        <p className="text-gray-500 text-sm">
+          ← Scroll to explore all phases →
+        </p>
       </div>
     </section>
   );

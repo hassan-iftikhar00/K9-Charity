@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
-import SmoothScrollProvider from "@/components/SmoothScrollProvider";
 import Navbar from "@/components/Navbar";
 import ScrollToTop from "@/components/ScrollToTop";
+import ScrollProvider from "@/components/LenisProvider";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -19,12 +19,12 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={inter.className}>
-        <SmoothScrollProvider>
+      <body className={inter.className} suppressHydrationWarning>
+        <ScrollProvider>
           <Navbar />
           {children}
           <ScrollToTop />
-        </SmoothScrollProvider>
+        </ScrollProvider>
       </body>
     </html>
   );

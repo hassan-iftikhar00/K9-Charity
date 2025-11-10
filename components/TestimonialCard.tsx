@@ -20,11 +20,8 @@ export default function TestimonialCard({
 }: TestimonialCardProps) {
   return (
     <motion.div
-      initial={{ opacity: 0, y: 30 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
       whileHover={{ y: -5 }}
-      className="bg-white rounded-2xl shadow-xl p-8 relative"
+      className="bg-white rounded-2xl shadow-xl p-8 relative border-2 border-primary-100"
     >
       <Quote className="absolute top-4 right-4 text-primary-200" size={48} />
 
@@ -33,7 +30,7 @@ export default function TestimonialCard({
           <img
             src={image}
             alt={name}
-            className="w-full h-full object-cover ring-4 ring-primary-100"
+            className="w-full h-full object-cover ring-4 ring-primary-300"
             onError={(e) => {
               e.currentTarget.style.display = "none";
               e.currentTarget.parentElement!.innerHTML =
@@ -45,9 +42,9 @@ export default function TestimonialCard({
           <h4 className="font-bold text-lg">{name}</h4>
           <p className="text-sm text-gray-600">{role}</p>
           {k9Name && (
-            <span className="inline-block mt-1 text-xs bg-yellow-400 text-yellow-900 px-2 py-1 rounded-full font-semibold">
+            <p className="text-sm text-primary-600 font-semibold">
               K-9: {k9Name}
-            </span>
+            </p>
           )}
         </div>
       </div>

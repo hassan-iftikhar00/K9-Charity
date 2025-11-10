@@ -17,11 +17,7 @@ export default function ImpactSection() {
   return (
     <section
       id="impact"
-      className="py-20 px-4 bg-primary-600 text-white"
-      style={{
-        background:
-          "linear-gradient(135deg, #0ea5e9 0%, #0284c7 50%, #0369a1 100%)",
-      }}
+      className="py-20 px-4 bg-linear-to-br from-secondary-500 to-secondary-600 text-white"
     >
       <div className="max-w-7xl mx-auto">
         <motion.div
@@ -52,7 +48,7 @@ export default function ImpactSection() {
           className="mt-16 text-center"
         >
           <motion.div
-            className="inline-flex items-center gap-4 bg-white/10 backdrop-blur-sm rounded-2xl p-8 hover:bg-white/15 transition-all cursor-pointer"
+            className="inline-flex items-center gap-4 bg-primary-500/20 backdrop-blur-sm rounded-2xl p-8 hover:bg-primary-500/30 transition-all cursor-pointer"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.98 }}
           >
@@ -67,7 +63,7 @@ export default function ImpactSection() {
                 repeatDelay: 3,
               }}
             >
-              <Award size={64} className="text-yellow-400" />
+              <Award size={64} className="text-primary-400" />
             </motion.div>
             <div className="text-left text-white">
               <h3 className="text-2xl font-bold mb-2 text-white">

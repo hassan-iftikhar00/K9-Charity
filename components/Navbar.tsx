@@ -6,37 +6,64 @@ import { Menu, X, Heart } from "lucide-react";
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
-  const [isScrolled, setIsScrolled] = useState(false);
+  const [isVisible, setIsVisible] = useState(false);
+  const [logoError, setLogoError] = useState(false);
 
   useEffect(() => {
+    let rafId: number;
+
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
+      rafId = requestAnimationFrame(() => {
+        // Hero section is 200vh (2x viewport height)
+        // Show navbar at 25% through hero = 0.5 * window.innerHeight (50vh)
+        // This is when content reaches center
+        const heroScrollThreshold = window.innerHeight * 0.5;
+        setIsVisible(window.scrollY >= heroScrollThreshold);
+      });
     };
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    handleScroll(); // Check initial state
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      if (rafId) cancelAnimationFrame(rafId);
+    };
   }, []);
 
   return (
     <motion.nav
-      initial={{ y: -100 }}
-      animate={{ y: 0 }}
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled ? "bg-white shadow-lg" : "bg-transparent"
-      }`}
+      initial={{ y: -100, opacity: 0 }}
+      animate={{
+        y: isVisible ? 0 : -100,
+        opacity: isVisible ? 1 : 0,
+      }}
+      transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+      style={{
+        position: "fixed",
+        top: 0,
+        left: 0,
+        right: 0,
+        zIndex: 100,
+        willChange: "transform, opacity",
+      }}
+      className="bg-black shadow-lg"
     >
       <div className="max-w-7xl mx-auto px-4 py-4">
         <div className="flex items-center justify-between">
-          {/* Logo */}
+          {/* Logo with fallback */}
           <div className="flex items-center gap-2">
-            <Heart
-              className={`${isScrolled ? "text-primary-600" : "text-white"}`}
-              size={32}
-            />
-            <span
-              className={`text-xl font-bold ${
-                isScrolled ? "text-gray-900" : "text-white"
-              }`}
-            >
+            {!logoError ? (
+              <img
+                src="/logo.png"
+                alt="Project K9 Hero"
+                className="h-10 w-auto"
+                onError={() => setLogoError(true)}
+              />
+            ) : (
+              <Heart className="text-primary-500" size={32} />
+            )}
+            <span className="text-xl font-bold text-white">
               Project K9 Hero
             </span>
           </div>
@@ -47,11 +74,7 @@ export default function Navbar() {
               <a
                 key={item}
                 href={`#${item.toLowerCase()}`}
-                className={`font-medium transition-colors ${
-                  isScrolled
-                    ? "text-gray-700 hover:text-primary-600"
-                    : "text-white hover:text-gray-200"
-                }`}
+                className="font-medium transition-colors text-white hover:text-primary-500"
               >
                 {item}
               </a>
@@ -59,7 +82,7 @@ export default function Navbar() {
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="px-6 py-2 btn-modern text-white rounded-lg font-semibold"
+              className="px-6 py-2 bg-primary-500 text-white rounded-lg font-semibold hover:bg-primary-600 transition-colors"
             >
               Donate Now
             </motion.button>
@@ -68,9 +91,8 @@ export default function Navbar() {
           {/* Mobile Menu Button */}
           <button
             onClick={() => setIsOpen(!isOpen)}
-            className={`md:hidden ${
-              isScrolled ? "text-gray-900" : "text-white"
-            }`}
+            className="md:hidden text-white"
+            aria-label={isOpen ? "Close menu" : "Open menu"}
           >
             {isOpen ? <X size={28} /> : <Menu size={28} />}
           </button>
@@ -83,7 +105,8 @@ export default function Navbar() {
               initial={{ opacity: 0, height: 0 }}
               animate={{ opacity: 1, height: "auto" }}
               exit={{ opacity: 0, height: 0 }}
-              className="md:hidden mt-4 pb-4"
+              transition={{ duration: 0.3 }}
+              className="md:hidden mt-4 pb-4 overflow-hidden"
             >
               {["About", "Phases", "Impact", "Stories", "Contact"].map(
                 (item) => (
@@ -91,15 +114,13 @@ export default function Navbar() {
                     key={item}
                     href={`#${item.toLowerCase()}`}
                     onClick={() => setIsOpen(false)}
-                    className={`block py-2 font-medium ${
-                      isScrolled ? "text-gray-700" : "text-white"
-                    }`}
+                    className="block py-2 font-medium text-white hover:text-primary-500 transition-colors"
                   >
                     {item}
                   </a>
                 )
               )}
-              <button className="w-full mt-2 px-6 py-2 btn-modern text-white rounded-lg font-semibold">
+              <button className="w-full mt-2 px-6 py-2 bg-primary-500 text-white rounded-lg font-semibold hover:bg-primary-600 transition-colors">
                 Donate Now
               </button>
             </motion.div>

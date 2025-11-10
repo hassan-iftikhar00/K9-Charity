@@ -12,13 +12,18 @@ import Link from "next/link";
 
 export default function Footer() {
   return (
-    <footer id="contact" className="bg-gray-900 text-white py-12 px-4">
+    <footer
+      id="contact"
+      className="bg-secondary-500 text-white py-12 px-4 border-t-4 border-primary-500"
+    >
       <div className="max-w-7xl mx-auto">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
           {/* About */}
           <div>
-            <h3 className="text-xl font-bold mb-4">Project K9 Hero</h3>
-            <p className="text-gray-400 text-sm leading-relaxed">
+            <h3 className="text-xl font-bold mb-4 text-primary-300">
+              Project K9 Hero
+            </h3>
+            <p className="text-gray-300 text-sm leading-relaxed">
               Dedicated to providing veterinary care, financial assistance, and
               support for retired working K-9s across the nation.
             </p>
@@ -26,25 +31,39 @@ export default function Footer() {
 
           {/* Quick Links */}
           <div>
-            <h3 className="text-xl font-bold mb-4">Quick Links</h3>
-            <ul className="space-y-2 text-gray-400">
+            <h3 className="text-xl font-bold mb-4 text-primary-300">
+              Quick Links
+            </h3>
+            <ul className="space-y-2 text-gray-300">
               <li>
-                <a href="#" className="hover:text-white transition-colors">
+                <a
+                  href="#"
+                  className="hover:text-primary-300 transition-colors"
+                >
                   About Us
                 </a>
               </li>
               <li>
-                <a href="#" className="hover:text-white transition-colors">
+                <a
+                  href="#"
+                  className="hover:text-primary-300 transition-colors"
+                >
                   Our Mission
                 </a>
               </li>
               <li>
-                <a href="#" className="hover:text-white transition-colors">
+                <a
+                  href="#"
+                  className="hover:text-primary-300 transition-colors"
+                >
                   Success Stories
                 </a>
               </li>
               <li>
-                <a href="#" className="hover:text-white transition-colors">
+                <a
+                  href="#"
+                  className="hover:text-primary-300 transition-colors"
+                >
                   Get Involved
                 </a>
               </li>
@@ -53,8 +72,8 @@ export default function Footer() {
 
           {/* Contact */}
           <div>
-            <h3 className="text-xl font-bold mb-4">Contact</h3>
-            <ul className="space-y-3 text-gray-400 text-sm">
+            <h3 className="text-xl font-bold mb-4 text-primary-300">Contact</h3>
+            <ul className="space-y-3 text-gray-300 text-sm">
               <li className="flex items-center gap-2">
                 <Mail size={16} />
                 info@projectk9hero.org
@@ -72,23 +91,25 @@ export default function Footer() {
 
           {/* Social */}
           <div>
-            <h3 className="text-xl font-bold mb-4">Follow Us</h3>
+            <h3 className="text-xl font-bold mb-4 text-primary-300">
+              Follow Us
+            </h3>
             <div className="flex gap-4">
               <a
                 href="#"
-                className="w-10 h-10 bg-gray-800 hover:bg-primary-600 rounded-full flex items-center justify-center transition-colors"
+                className="w-10 h-10 bg-gray-800 hover:bg-primary-500 rounded-full flex items-center justify-center transition-colors"
               >
                 <Facebook size={20} />
               </a>
               <a
                 href="#"
-                className="w-10 h-10 bg-gray-800 hover:bg-primary-600 rounded-full flex items-center justify-center transition-colors"
+                className="w-10 h-10 bg-gray-800 hover:bg-primary-500 rounded-full flex items-center justify-center transition-colors"
               >
                 <Twitter size={20} />
               </a>
               <a
                 href="#"
-                className="w-10 h-10 bg-gray-800 hover:bg-primary-600 rounded-full flex items-center justify-center transition-colors"
+                className="w-10 h-10 bg-gray-800 hover:bg-primary-500 rounded-full flex items-center justify-center transition-colors"
               >
                 <Instagram size={20} />
               </a>
@@ -96,7 +117,7 @@ export default function Footer() {
 
             {/* Charity Badges */}
             <div className="mt-6">
-              <p className="text-xs text-gray-500 mb-2">Accredited by:</p>
+              <p className="text-xs text-gray-400 mb-2">Accredited by:</p>
               <div className="flex gap-2">
                 <img
                   src="/charity-navigator.png"
@@ -116,21 +137,21 @@ export default function Footer() {
         </div>
 
         {/* Bottom Bar */}
-        <div className="border-t border-gray-800 pt-8 text-center text-gray-500 text-sm">
+        <div className="border-t border-gray-700 pt-8 text-center text-gray-400 text-sm">
           <p>
             © 2024 Project K9 Hero. All rights reserved. | 501(c)(3) Non-Profit
             Organization
           </p>
           <div className="mt-2 space-x-4">
-            <a href="#" className="hover:text-white transition-colors">
+            <a href="#" className="hover:text-primary-300 transition-colors">
               Privacy Policy
             </a>
             <span>•</span>
-            <a href="#" className="hover:text-white transition-colors">
+            <a href="#" className="hover:text-primary-300 transition-colors">
               Terms of Service
             </a>
             <span>•</span>
-            <a href="#" className="hover:text-white transition-colors">
+            <a href="#" className="hover:text-primary-300 transition-colors">
               Cookie Policy
             </a>
           </div>

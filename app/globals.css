@@ -1,16 +1,23 @@
 @import "tailwindcss";
 
 @theme {
-  --color-primary-50: #f0f9ff;
-  --color-primary-100: #e0f2fe;
-  --color-primary-400: #38bdf8;
-  --color-primary-500: #0ea5e9;
-  --color-primary-600: #0284c7;
-  --color-primary-700: #0369a1;
+  --color-primary-50: #faf8f5;
+  --color-primary-100: #f5f1eb;
+  --color-primary-200: #e8dfd1;
+  --color-primary-300: #dbcdb7;
+  --color-primary-400: #c8b494;
+  --color-primary-500: #b69968;
+  --color-primary-600: #9a7d4d;
+  --color-primary-700: #7d6439;
+  --color-primary-800: #604b2b;
+  --color-primary-900: #43351e;
 
-  --color-secondary-400: #fbbf24;
-  --color-secondary-500: #f59e0b;
-  --color-secondary-600: #d97706;
+  --color-secondary-400: #1a1a1a;
+  --color-secondary-500: #000000;
+  --color-secondary-600: #1a1a1a;
+
+  --color-accent-500: #8b4513;
+  --color-accent-600: #a0522d;
 
   --color-background: #ffffff;
   --color-foreground: #0f172a;
@@ -114,12 +121,47 @@
     overflow-x: hidden;
   }
 
-  /* Prevent flickering during animations */
-  * {
+  /* GPU acceleration for smooth transforms - but NOT for fixed elements */
+  *:not([style*="position: fixed"]):not(#hero-video-background):not(
+      #hero-video-background *
+    ) {
     -webkit-backface-visibility: hidden;
     -moz-backface-visibility: hidden;
-    -webkit-transform: translate3d(0, 0, 0);
-    -moz-transform: translate3d(0, 0, 0);
+    backface-visibility: hidden;
+  }
+
+  /* Optimize video rendering */
+  video:not(#hero-video-background video) {
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+    image-rendering: optimizeSpeed;
+  }
+
+  /* Force video background to stay fixed */
+  #hero-video-background {
+    position: fixed !important;
+    transform: none !important;
+    will-change: auto !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100vw !important;
+    height: 100vh !important;
+    z-index: -10 !important;
+  }
+
+  #hero-video-background * {
+    transform: none !important;
+  }
+
+  .hero-video-fixed {
+    position: fixed !important;
+    transform: none !important;
+    will-change: auto !important;
+  }
+
+  .hero-video-fixed video {
+    position: absolute !important;
+    transform: none !important;
   }
 }
 
@@ -131,14 +173,14 @@
   .btn-modern {
     position: relative;
     overflow: hidden;
-    background: linear-gradient(135deg, #0ea5e9, #0284c7);
-    box-shadow: 0 4px 15px rgba(14, 165, 233, 0.4);
+    background: linear-gradient(135deg, #b69968, #9a7d4d);
+    box-shadow: 0 4px 15px rgba(182, 153, 104, 0.4);
     transition: all 0.3s ease;
   }
 
   .btn-modern:hover {
     transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(14, 165, 233, 0.6);
+    box-shadow: 0 6px 20px rgba(182, 153, 104, 0.6);
   }
 
   .btn-modern::before {
@@ -162,7 +204,7 @@
   }
 
   .thermometer-fill {
-    background: linear-gradient(to top, #0284c7, #0ea5e9);
+    background: linear-gradient(to top, #9a7d4d, #b69968);
     animation: shimmer 2s infinite linear;
     background-size: 1000px 100%;
   }
@@ -178,10 +220,10 @@
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #0ea5e9;
+  background: #b69968;
   border-radius: 5px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #0284c7;
+  background: #9a7d4d;
 }

@@ -33,11 +33,7 @@ export default function DonationThermometer({
             ease: [0.43, 0.13, 0.23, 0.96],
             type: "tween",
           }}
-          className="absolute bottom-0 w-full"
-          style={{
-            background:
-              "linear-gradient(180deg, #38bdf8 0%, #0ea5e9 50%, #0284c7 100%)",
-          }}
+          className="absolute bottom-0 w-full bg-linear-to-t from-primary-600 to-primary-400"
         >
           {/* Liquid wave effect on top - SVG waves */}
           <div
@@ -55,7 +51,7 @@ export default function DonationThermometer({
             >
               <path
                 d="M0,30 Q150,10 300,30 T600,30 T900,30 T1200,30 T1500,30 T1800,30 T2100,30 T2400,30 V60 H0 Z"
-                fill="#38bdf8"
+                fill="#C8B494"
                 opacity="0.8"
               />
             </svg>
@@ -78,7 +74,7 @@ export default function DonationThermometer({
             >
               <path
                 d="M0,35 Q100,20 200,35 T400,35 T600,35 T800,35 T1000,35 T1200,35 T1400,35 T1600,35 T1800,35 T2000,35 T2200,35 T2400,35 V60 H0 Z"
-                fill="#0ea5e9"
+                fill="#B69968"
                 opacity="0.6"
               />
             </svg>
@@ -99,18 +95,18 @@ export default function DonationThermometer({
           ))}
         </motion.div>
 
-        {/* Animated dog icon */}
+        {/* Animated dog icon - Video/GIF */}
         <motion.div
           initial={{ bottom: 0 }}
           animate={{ bottom: isVisible ? `${percentage}%` : 0 }}
-          transition={{
-            duration: 2.5,
-            ease: [0.43, 0.13, 0.23, 0.96],
-          }}
-          className="absolute left-1/2 -translate-x-1/2 text-2xl z-10"
-          style={{ filter: "drop-shadow(0 2px 4px rgba(0,0,0,0.2))" }}
+          transition={{ duration: 2, ease: "easeOut" }}
+          className="absolute left-1/2 -translate-x-1/2 w-16 h-16 z-10 filter drop-shadow-lg"
         >
-          🐕
+          <img
+            src="/Dog-unscreen.gif"
+            alt="Running dog"
+            className="w-full h-full object-contain "
+          />
         </motion.div>
       </div>
 
