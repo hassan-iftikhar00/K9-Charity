@@ -156,11 +156,11 @@ export default function PhasesSection() {
         </div>
 
         {/* Scroll hint */}
-        <div className="text-center pb-8 shrink-0">
+        {/* <div className="text-center pb-8 shrink-0">
           <p className="text-gray-500 text-sm">
             ← Scroll to explore all phases →
           </p>
-        </div>
+        </div> */}
       </div>
     </section>
   );
