@@ -16,7 +16,7 @@ const phases = [
     goal: 1200000,
     raised: 850000,
     isActive: true,
-    imageSrc: "/public/phase1.jpg",
+    imageSrc: "/Phase1.jpg",
     details:
       "Secure property, complete environmental assessments, site grading, utility connections, and lay foundation for our state-of-the-art K-9 facility.",
   },
@@ -27,7 +27,7 @@ const phases = [
     goal: 2500000,
     raised: 450000,
     isActive: true,
-    imageSrc: "/phase2.jpg",
+    imageSrc: "/Phase2.jpg",
     details:
       "Construct main building with advanced veterinary clinic, surgical suites, rehabilitation pools, kennels, and administrative offices to serve our heroes.",
   },
@@ -38,7 +38,7 @@ const phases = [
     goal: 1800000,
     raised: 0,
     isActive: false,
-    imageSrc: "/phase3.jpg",
+    imageSrc: "/Phase3.jpg",
     details:
       "Build professional-grade agility courses, scent detection training areas, obedience fields, and secure exercise yards for active and retired K-9s.",
   },
@@ -49,7 +49,7 @@ const phases = [
     goal: 1500000,
     raised: 0,
     isActive: false,
-    imageSrc: "/phase4.jpg",
+    imageSrc: "/Phase4.jpg",
     details:
       "Install underwater treadmills, laser therapy equipment, and specialized rehabilitation tools to help injured and aging K-9 heroes recover and thrive.",
   },
@@ -60,7 +60,7 @@ const phases = [
     goal: 1000000,
     raised: 0,
     isActive: false,
-    imageSrc: "/phase5.jpg",
+    imageSrc: "/Phase5.jpg",
     details:
       "Create welcoming spaces where retired K-9s can meet potential adopters, plus offices for adoption coordinators and community education programs.",
   },
@@ -71,7 +71,7 @@ const phases = [
     goal: 670000,
     raised: 0,
     isActive: false,
-    imageSrc: "/phase6.jpg",
+    imageSrc: "/Phase6.jpg",
     details:
       "Establish a peaceful memorial garden and interactive museum showcasing the history and heroism of working K-9s who served our nation.",
   },
