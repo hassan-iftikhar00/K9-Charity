@@ -108,17 +108,8 @@ export default function PhasesSection() {
         end: `+=${scrollDistance}`,
         scrub: 1,
         pin: true,
-        anticipatePin: 1,
         pinSpacing: true,
         invalidateOnRefresh: true,
-        onLeave: () => {
-          // Ensure smooth transition when leaving
-          gsap.set(timeline, { clearProps: "all" });
-        },
-        onEnterBack: () => {
-          // Reset position when scrolling back up
-          gsap.set(timeline, { x: 0 });
-        },
       },
     });
 
@@ -128,11 +119,13 @@ export default function PhasesSection() {
       ease: "none",
     });
 
+    // Store reference to this specific ScrollTrigger
+    const scrollTriggerInstance = tl.scrollTrigger;
+
     return () => {
-      // Clean up ScrollTrigger and reset timeline position
-      ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
-      if (timeline) {
-        gsap.set(timeline, { clearProps: "all" });
+      // Only kill this specific ScrollTrigger, not all of them
+      if (scrollTriggerInstance) {
+        scrollTriggerInstance.kill();
       }
     };
   }, []);
