@@ -30,8 +30,6 @@ const phases = [
     imageSrc: "/phase2.jpg",
     details:
       "Construct main building with advanced veterinary clinic, surgical suites, rehabilitation pools, kennels, and administrative offices to serve our heroes.",
-    color: "from-green-500 to-green-600",
-    bgPattern: "🏥",
   },
   {
     phase: 3,
@@ -43,8 +41,6 @@ const phases = [
     imageSrc: "/phase3.jpg",
     details:
       "Build professional-grade agility courses, scent detection training areas, obedience fields, and secure exercise yards for active and retired K-9s.",
-    color: "from-orange-500 to-orange-600",
-    bgPattern: "🏃",
   },
   {
     phase: 4,
@@ -56,8 +52,6 @@ const phases = [
     imageSrc: "/phase4.jpg",
     details:
       "Install underwater treadmills, laser therapy equipment, and specialized rehabilitation tools to help injured and aging K-9 heroes recover and thrive.",
-    color: "from-purple-500 to-purple-600",
-    bgPattern: "🧘",
   },
   {
     phase: 5,
@@ -69,8 +63,6 @@ const phases = [
     imageSrc: "/phase5.jpg",
     details:
       "Create welcoming spaces where retired K-9s can meet potential adopters, plus offices for adoption coordinators and community education programs.",
-    color: "from-pink-500 to-pink-600",
-    bgPattern: "❤️",
   },
   {
     phase: 6,
@@ -82,8 +74,6 @@ const phases = [
     imageSrc: "/phase6.jpg",
     details:
       "Establish a peaceful memorial garden and interactive museum showcasing the history and heroism of working K-9s who served our nation.",
-    color: "from-indigo-500 to-indigo-600",
-    bgPattern: "🌿",
   },
 ];
 
@@ -97,10 +87,10 @@ export default function PhasesSection() {
 
     if (!container || !timeline) return;
 
-    // Calculate total scroll distance needed
+    // Calculate total scroll distance
     const scrollDistance = timeline.scrollWidth - window.innerWidth;
 
-    // Create horizontal scroll timeline
+    // Create horizontal scroll animation
     const tl = gsap.timeline({
       scrollTrigger: {
         trigger: container,
@@ -108,22 +98,21 @@ export default function PhasesSection() {
         end: `+=${scrollDistance}`,
         scrub: 1,
         pin: true,
+        // FIXED: Changed to true to reserve proper space
         pinSpacing: true,
         invalidateOnRefresh: true,
+        anticipatePin: 1, // Helps prevent flashing
       },
     });
 
-    // Move timeline horizontally
     tl.to(timeline, {
       x: -scrollDistance,
       ease: "none",
     });
 
-    // Store reference to this specific ScrollTrigger
     const scrollTriggerInstance = tl.scrollTrigger;
 
     return () => {
-      // Only kill this specific ScrollTrigger, not all of them
       if (scrollTriggerInstance) {
         scrollTriggerInstance.kill();
       }
@@ -134,39 +123,51 @@ export default function PhasesSection() {
     <section
       id="phases"
       ref={containerRef}
-      className="relative bg-linear-to-b from-white to-primary-50 overflow-hidden"
+      className="relative bg-gradient-to-b from-white to-primary-50 overflow-hidden"
+      style={{ minHeight: "100vh" }}
     >
-      {/* Header - Fixed at top */}
-      <div className="relative z-10 py-12 text-center">
-        <h2 className="text-5xl font-bold mb-4 text-secondary-500">
-          Our Journey
-        </h2>
-        <p className="text-xl text-gray-700 max-w-3xl mx-auto">
-          Follow our multi-phase approach to building a world-class facility for
-          our K-9 heroes
-        </p>
-      </div>
+      {/* FIXED: Added proper background to prevent hero video showing through */}
+      <div className="absolute inset-0 bg-gradient-to-b from-white to-primary-50 z-0" />
 
-      {/* Horizontal scrolling timeline */}
-      <div className="relative py-12">
-        <div
-          ref={timelineRef}
-          className="flex gap-8 px-8"
-          style={{ width: `${phases.length * 400 + 200}px` }}
-        >
-          {phases.map((phase) => (
-            <div key={phase.phase} className="shrink-0 w-96">
-              <PhaseCard {...phase} />
-            </div>
-          ))}
+      {/* Content wrapper with relative positioning */}
+      <div className="relative z-10 h-screen flex flex-col">
+        {/* Header - Fixed at top */}
+        <div className="pt-12 pb-8 text-center shrink-0">
+          <h2 className="text-5xl font-bold mb-4 text-secondary-500">
+            Our Journey
+          </h2>
+          <p className="text-xl text-gray-700 max-w-3xl mx-auto px-4">
+            Follow our multi-phase approach to building a world-class facility
+            for our K-9 heroes
+          </p>
         </div>
-      </div>
 
-      {/* Simple scroll hint */}
-      <div className="text-center pb-8">
-        <p className="text-gray-500 text-sm">
-          ← Scroll to explore all phases →
-        </p>
+        {/* Horizontal scrolling timeline */}
+        <div className="relative flex-1 flex items-center overflow-hidden px-24">
+          <div
+            ref={timelineRef}
+            className="flex gap-8 px-8"
+            style={{ width: `${phases.length * 400 + 200}px` }}
+          >
+            {/* Left spacer */}
+            <div className="shrink-0 w-[2vw]" />
+
+            {phases.map((phase) => (
+              <div key={phase.phase} className="shrink-0 w-96">
+                <PhaseCard {...phase} />
+              </div>
+            ))}
+            {/* Right spacer */}
+            <div className="shrink-0 w-[15vw]" />
+          </div>
+        </div>
+
+        {/* Scroll hint */}
+        {/* <div className="text-center pb-8 shrink-0">
+          <p className="text-gray-500 text-sm">
+            ← Scroll to explore all phases →
+          </p>
+        </div> */}
       </div>
     </section>
   );
