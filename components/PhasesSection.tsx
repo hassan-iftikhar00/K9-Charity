@@ -16,7 +16,7 @@ const phases = [
     goal: 1200000,
     raised: 850000,
     isActive: true,
-    imageSrc: "/phase1.jpg",
+    imageSrc: "/public/phase1.jpg",
     details:
       "Secure property, complete environmental assessments, site grading, utility connections, and lay foundation for our state-of-the-art K-9 facility.",
   },
