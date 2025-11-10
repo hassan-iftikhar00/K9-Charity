@@ -87,32 +87,34 @@ export default function PhasesSection() {
 
     if (!container || !timeline) return;
 
-    // Calculate total scroll distance
+    // Calculate total scroll distance needed
     const scrollDistance = timeline.scrollWidth - window.innerWidth;
 
-    // Create horizontal scroll animation
+    // Create horizontal scroll timeline
     const tl = gsap.timeline({
       scrollTrigger: {
         trigger: container,
         start: "top top",
-        end: `+=${scrollDistance}`,
+        end: `+=${scrollDistance + 500}`, // Add buffer to prevent snap back
         scrub: 1,
         pin: true,
-        // FIXED: Changed to true to reserve proper space
-        pinSpacing: true,
+        pinSpacing: true, // This prevents the jump/loop
         invalidateOnRefresh: true,
-        anticipatePin: 1, // Helps prevent flashing
+        fastScrollEnd: true,
       },
     });
 
+    // Move timeline horizontally
     tl.to(timeline, {
       x: -scrollDistance,
       ease: "none",
     });
 
+    // Store reference to this specific ScrollTrigger
     const scrollTriggerInstance = tl.scrollTrigger;
 
     return () => {
+      // Only kill this specific ScrollTrigger, not all of them
       if (scrollTriggerInstance) {
         scrollTriggerInstance.kill();
       }
@@ -123,14 +125,10 @@ export default function PhasesSection() {
     <section
       id="phases"
       ref={containerRef}
-      className="relative bg-gradient-to-b from-white to-primary-50 overflow-hidden"
-      style={{ minHeight: "100vh" }}
+      className="relative bg-linear-to-b from-white to-primary-50 overflow-hidden h-screen"
     >
-      {/* FIXED: Added proper background to prevent hero video showing through */}
-      <div className="absolute inset-0 bg-gradient-to-b from-white to-primary-50 z-0" />
-
-      {/* Content wrapper with relative positioning */}
-      <div className="relative z-10 h-screen flex flex-col">
+      {/* Content wrapper */}
+      <div className="h-full flex flex-col">
         {/* Header - Fixed at top */}
         <div className="pt-12 pb-8 text-center shrink-0">
           <h2 className="text-5xl font-bold mb-4 text-secondary-500">
@@ -143,31 +141,26 @@ export default function PhasesSection() {
         </div>
 
         {/* Horizontal scrolling timeline */}
-        <div className="relative flex-1 flex items-center overflow-hidden px-24">
+        <div className="relative flex-1 flex items-center overflow-hidden">
           <div
             ref={timelineRef}
             className="flex gap-8 px-8"
             style={{ width: `${phases.length * 400 + 200}px` }}
           >
-            {/* Left spacer */}
-            <div className="shrink-0 w-[2vw]" />
-
             {phases.map((phase) => (
               <div key={phase.phase} className="shrink-0 w-96">
                 <PhaseCard {...phase} />
               </div>
             ))}
-            {/* Right spacer */}
-            <div className="shrink-0 w-[15vw]" />
           </div>
         </div>
 
         {/* Scroll hint */}
-        {/* <div className="text-center pb-8 shrink-0">
+        <div className="text-center pb-8 shrink-0">
           <p className="text-gray-500 text-sm">
             ← Scroll to explore all phases →
           </p>
-        </div> */}
+        </div>
       </div>
     </section>
   );
