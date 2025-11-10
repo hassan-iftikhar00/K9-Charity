@@ -147,11 +147,15 @@ export default function PhasesSection() {
             className="flex gap-8 px-8"
             style={{ width: `${phases.length * 400 + 200}px` }}
           >
+            {/* Left spacer */}
+            <div className="shrink-0 w-[3vw]" />
             {phases.map((phase) => (
               <div key={phase.phase} className="shrink-0 w-96">
                 <PhaseCard {...phase} />
               </div>
             ))}
+            {/* Left spacer */}
+            <div className="shrink-0 w-[15vw]" />
           </div>
         </div>
 
