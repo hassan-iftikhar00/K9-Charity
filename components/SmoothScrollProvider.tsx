@@ -10,7 +10,9 @@ export default function SmoothScrollProvider({
 }) {
   useEffect(() => {
     const lenis = initSmoothScroll();
-    return () => lenis.destroy();
+    return () => {
+      if (lenis) lenis.destroy();
+    };
   }, []);
 
   return <>{children}</>;
