@@ -104,9 +104,9 @@ export default function PhasesSection() {
       },
     });
 
-    // Move timeline horizontally
+    // Move timeline horizontally (negative x moves content left, showing phases on the right)
     tl.to(timeline, {
-      x: -scrollDistance,
+      x: () => -(timeline.scrollWidth - window.innerWidth),
       ease: "none",
     });
 
