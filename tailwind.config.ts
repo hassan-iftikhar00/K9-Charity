@@ -10,16 +10,16 @@ const config: Config = {
     extend: {
       colors: {
         primary: {
-          50: "#FAF8F5",
-          100: "#F5F1EB",
-          200: "#E8DFD1",
-          300: "#DBCDB7",
-          400: "#C8B494", // Tan
-          500: "#B69968", // Main tan
-          600: "#9A7D4D",
-          700: "#7D6439",
-          800: "#604B2B",
-          900: "#43351E",
+          50: "#FEF2F2",
+          100: "#FEE2E2",
+          200: "#FECACA",
+          300: "#FCA5A5",
+          400: "#F87171",
+          500: "#AC1F23", // Main red
+          600: "#991B1F",
+          700: "#7F171A",
+          800: "#661215",
+          900: "#4C0E10",
         },
         secondary: {
           500: "#000000", // Black
@@ -27,8 +27,8 @@ const config: Config = {
           700: "#2D2D2D",
         },
         accent: {
-          500: "#8B4513", // Saddle brown for CTAs
-          600: "#A0522D",
+          500: "#AC1F23", // Red for CTAs
+          600: "#991B1F",
         },
         // Add commonly used semantic tokens so utilities like
         // `bg-background`, `text-foreground`, and `border-border`

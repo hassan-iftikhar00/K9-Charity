@@ -51,7 +51,7 @@ export default function DonationThermometer({
             >
               <path
                 d="M0,30 Q150,10 300,30 T600,30 T900,30 T1200,30 T1500,30 T1800,30 T2100,30 T2400,30 V60 H0 Z"
-                fill="#C8B494"
+                fill="#F87171"
                 opacity="0.8"
               />
             </svg>
@@ -74,7 +74,7 @@ export default function DonationThermometer({
             >
               <path
                 d="M0,35 Q100,20 200,35 T400,35 T600,35 T800,35 T1000,35 T1200,35 T1400,35 T1600,35 T1800,35 T2000,35 T2200,35 T2400,35 V60 H0 Z"
-                fill="#B69968"
+                fill="#AC1F23"
                 opacity="0.6"
               />
             </svg>

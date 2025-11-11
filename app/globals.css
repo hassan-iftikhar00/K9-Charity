@@ -1,23 +1,23 @@
 @import "tailwindcss";
 
 @theme {
-  --color-primary-50: #faf8f5;
-  --color-primary-100: #f5f1eb;
-  --color-primary-200: #e8dfd1;
-  --color-primary-300: #dbcdb7;
-  --color-primary-400: #c8b494;
-  --color-primary-500: #b69968;
-  --color-primary-600: #9a7d4d;
-  --color-primary-700: #7d6439;
-  --color-primary-800: #604b2b;
-  --color-primary-900: #43351e;
+  --color-primary-50: #fef2f2;
+  --color-primary-100: #fee2e2;
+  --color-primary-200: #fecaca;
+  --color-primary-300: #fca5a5;
+  --color-primary-400: #f87171;
+  --color-primary-500: #ac1f23;
+  --color-primary-600: #991b1f;
+  --color-primary-700: #7f171a;
+  --color-primary-800: #661215;
+  --color-primary-900: #4c0e10;
 
   --color-secondary-400: #1a1a1a;
   --color-secondary-500: #000000;
   --color-secondary-600: #1a1a1a;
 
-  --color-accent-500: #8b4513;
-  --color-accent-600: #a0522d;
+  --color-accent-500: #ac1f23;
+  --color-accent-600: #991b1f;
 
   --color-background: #ffffff;
   --color-foreground: #0f172a;
@@ -173,14 +173,14 @@
   .btn-modern {
     position: relative;
     overflow: hidden;
-    background: linear-gradient(135deg, #b69968, #9a7d4d);
-    box-shadow: 0 4px 15px rgba(182, 153, 104, 0.4);
+    background: linear-gradient(135deg, #ac1f23, #991b1f);
+    box-shadow: 0 4px 15px rgba(172, 31, 35, 0.4);
     transition: all 0.3s ease;
   }
 
   .btn-modern:hover {
     transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(182, 153, 104, 0.6);
+    box-shadow: 0 6px 20px rgba(172, 31, 35, 0.6);
   }
 
   .btn-modern::before {
@@ -204,7 +204,7 @@
   }
 
   .thermometer-fill {
-    background: linear-gradient(to top, #9a7d4d, #b69968);
+    background: linear-gradient(to top, #991b1f, #ac1f23);
     animation: shimmer 2s infinite linear;
     background-size: 1000px 100%;
   }
@@ -220,10 +220,10 @@
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #b69968;
+  background: #ac1f23;
   border-radius: 5px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #9a7d4d;
+  background: #991b1f;
 }
