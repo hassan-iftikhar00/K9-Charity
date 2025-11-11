@@ -20,7 +20,7 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
           {/* About */}
           <div>
-            <h3 className="text-xl font-bold mb-4 text-primary-300">
+            <h3 className="text-xl font-bold mb-4 text-primary-400">
               Project K9 Hero
             </h3>
             <p className="text-gray-300 text-sm leading-relaxed">
@@ -31,14 +31,14 @@ export default function Footer() {
 
           {/* Quick Links */}
           <div>
-            <h3 className="text-xl font-bold mb-4 text-primary-300">
+            <h3 className="text-xl font-bold mb-4 text-primary-400">
               Quick Links
             </h3>
             <ul className="space-y-2 text-gray-300">
               <li>
                 <a
                   href="#"
-                  className="hover:text-primary-300 transition-colors"
+                  className="hover:text-primary-400 transition-colors"
                 >
                   About Us
                 </a>
@@ -46,7 +46,7 @@ export default function Footer() {
               <li>
                 <a
                   href="#"
-                  className="hover:text-primary-300 transition-colors"
+                  className="hover:text-primary-400 transition-colors"
                 >
                   Our Mission
                 </a>
@@ -54,7 +54,7 @@ export default function Footer() {
               <li>
                 <a
                   href="#"
-                  className="hover:text-primary-300 transition-colors"
+                  className="hover:text-primary-400 transition-colors"
                 >
                   Success Stories
                 </a>
@@ -62,7 +62,7 @@ export default function Footer() {
               <li>
                 <a
                   href="#"
-                  className="hover:text-primary-300 transition-colors"
+                  className="hover:text-primary-400 transition-colors"
                 >
                   Get Involved
                 </a>
@@ -72,7 +72,7 @@ export default function Footer() {
 
           {/* Contact */}
           <div>
-            <h3 className="text-xl font-bold mb-4 text-primary-300">Contact</h3>
+            <h3 className="text-xl font-bold mb-4 text-primary-400">Contact</h3>
             <ul className="space-y-3 text-gray-300 text-sm">
               <li className="flex items-center gap-2">
                 <Mail size={16} />
@@ -91,7 +91,7 @@ export default function Footer() {
 
           {/* Social */}
           <div>
-            <h3 className="text-xl font-bold mb-4 text-primary-300">
+            <h3 className="text-xl font-bold mb-4 text-primary-400">
               Follow Us
             </h3>
             <div className="flex gap-4">
@@ -143,15 +143,15 @@ export default function Footer() {
             Organization
           </p>
           <div className="mt-2 space-x-4">
-            <a href="#" className="hover:text-primary-300 transition-colors">
+            <a href="#" className="hover:text-primary-400 transition-colors">
               Privacy Policy
             </a>
             <span>•</span>
-            <a href="#" className="hover:text-primary-300 transition-colors">
+            <a href="#" className="hover:text-primary-400 transition-colors">
               Terms of Service
             </a>
             <span>•</span>
-            <a href="#" className="hover:text-primary-300 transition-colors">
+            <a href="#" className="hover:text-primary-400 transition-colors">
               Cookie Policy
             </a>
           </div>

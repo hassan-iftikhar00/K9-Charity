@@ -63,7 +63,7 @@ export default function ImpactSection() {
                 repeatDelay: 3,
               }}
             >
-              <Award size={64} className="text-primary-400" />
+              <Award size={64} className="text-primary-500" />
             </motion.div>
             <div className="text-left text-white">
               <h3 className="text-2xl font-bold mb-2 text-white">

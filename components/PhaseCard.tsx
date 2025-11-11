@@ -88,7 +88,7 @@ export default function PhaseCard({
         <div className="flex items-center gap-2 mb-2">
           <span className="text-3xl font-bold">Phase {phase}</span>
           {!isActive && (
-            <span className="text-sm bg-primary-500 text-black px-3 py-1 rounded-full font-semibold">
+            <span className="text-sm bg-primary-500 text-white px-3 py-1 rounded-full font-semibold">
               Coming Soon
             </span>
           )}
